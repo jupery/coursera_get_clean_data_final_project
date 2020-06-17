@@ -1,0 +1,127 @@
+---
+title: "Codebook for Tidied Data Sets of Human Activity Recognition ('Getting and Cleaning Data' Final Project)" 
+author: "Takashi"
+date: "16/06/2020"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1. Purpose of the Project
+The purpose of the project is to prepare partial, tidy data sets from the data collected in the experiments conducted by the Non Linear Complex Systems Laboratory at the Università degli Studi di Genova.
+
+The experiments obtained six types of body movement ('Activity') of 30 subjects using a smartphone attached to subjects' body. This project prepares two data sets that consist of means and standard deviations of the measured movement for each subject and each activity.
+
+
+## 2. About Experiments and Original Data Collection
+
+The original data set can be found at:http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones  
+
+The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The experiments have been video-recorded to label the data manually. The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data. 
+
+The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain.
+
+
+## 3. Steps for Preparing Tidy Data Sets
+
+**Data 1 har_merged.txt**  
+1. Prepare descriptive variable names using 'features.txt' in the orignal data set.  
+2. Load the original test and train data sets. For each, attach the subject data (1 to 30) and activity (e.g. "walking", "laying", etc.) data to the measure data set.  
+3. Combine the test data set (data of 9 participants) and the training data set (data of 21 participants) into a single data set.  
+4. Extract only the data of means and standard deviations out of all the statistical measures (e.g. mean, max, min, etc.) of participants' motions.  
+
+**Data 2 har_summary.txt**  
+5. Summarise means and standard deviations by subject and activity.
+
+
+## 4. Description of the Tidied Data Sets
+
+**Data Set 1 har_merged.txt**
+The data of 30 subjects, each of whom taking part in 6 acitivities. The number of records for each subject and each activity varies from 36 to 95.  
+Dimension: 10,299 records,  69 columns (33 mean measurements, 33 standard deviations measurements, subject, activity number, and activity label)
+
+**Data Set 2 har_summary.txt**
+The data set 1 summarised by subject and activity.  
+Dimension: 180 records (30 subjects * 6 activities),  69 columns (33 mean measurements, 33 standard deviations measurements, subject, activity number, and activity label)
+
+
+## 5. Description of Variables
+
+### 5-1Variables of Data Set1 har_merged.txt
+
+- **activity**:  Numbers from 1 to 6 that represent six activities, namely, 1  WALKING, 2 WALKING_UPSTAIRS, 3 WALKING_DOWNSTAIRS, 4 SITTING, 5 STANDING, and 6 LAYING
+- **subject**:  Numbers from 1 to 30 that represent subject who took part in the experiments
+- **tBodyAccmean\_\_\_X**:  Mean value of a time domain signal of body acceleration in the direction of X-axis
+- **tBodyAccmean\_\_\_Y**:  Mean value of a time domain signal of body acceleration in the direction of X-axis
+- **tBodyAccmean\_\_\_Z**:  Mean value of a time domain signal of body acceleration in the direction of Z-axis
+- **tBodyAccstd\_\_\_X**:  Standard deviation of a time domain signal of body acceleration in the direction of X-axis
+- **tBodyAccstd\_\_\_Y**:  Standard deviation of a time domain signal of body acceleration in the direction of X-axis
+- **tBodyAccstd\_\_\_Z**:  Standard deviation of a time domain signal of body acceleration in the direction of Z-axis
+- **tGravityAccmean\_\_\_X**:  Mean value of a time domain signal of gravity acceleration in the direction of X-axis
+- **tGravityAccmean\_\_\_Y**:  Mean value of a time domain signal of gravity acceleration in the direction of X-axis
+- **tGravityAccmean\_\_\_Z**:  Mean value of a time domain signal of gravity acceleration in the direction of Z-axis
+- **tGravityAccstd\_\_\_X**:  Standard deviation of a time domain signal of gravity acceleration in the direction of X-axis
+- **tGravityAccstd\_\_\_Y**:  Standard deviation of a time domain signal of gravity acceleration in the direction of X-axis
+- **tGravityAccstd\_\_\_Z**:  Standard deviation of a time domain signal of gravity acceleration in the direction of Z-axis
+- **tBodyAccJerkmean\_\_\_X**:  Mean value of a jerk signal of body acceleration in the direction of X-axis
+- **tBodyAccJerkmean\_\_\_Y**:  Mean value of a jerk signal of body acceleration in the direction of X-axis
+- **tBodyAccJerkmean\_\_\_Z**:  Mean value of a jerk signal of body acceleration in the direction of Z-axis
+- **tBodyAccJerkstd\_\_\_X**:  Standard deviation of a jerk signal of body acceleration in the direction of X-axis
+- **tBodyAccJerkstd\_\_\_Y**:  Standard deviation of a jerk signal of body acceleration in the direction of X-axis
+- **tBodyAccJerkstd\_\_\_Z**:  Standard deviation of a jerk signal of body acceleration in the direction of Z-axis
+- **tBodyGyromean\_\_\_X**:  Mean value of a time domain signal of gyroscope acceleration in the direction of X-axis
+- **tBodyGyromean\_\_\_Y**:  Mean value of a time domain signal of gyroscope acceleration in the direction of X-axis
+- **tBodyGyromean\_\_\_Z**:  Mean value of a time domain signal of gyroscope acceleration in the direction of Z-axis
+- **tBodyGyrostd\_\_\_X**:  Standard deviation of a time domain signal of gyroscope acceleration in the direction of X-axis
+- **tBodyGyrostd\_\_\_Y**:  Standard deviation of a time domain signal of gyroscope acceleration in the direction of X-axis
+- **tBodyGyrostd\_\_\_Z**:  Standard deviation of a time domain signal of gyroscope acceleration in the direction of Z-axis
+- **tBodyGyroJerkmean\_\_\_X**:  Mean value of a jerk signal of gyroscope acceleration in the direction of X-axis
+- **tBodyGyroJerkmean\_\_\_Y**:  Mean value of a jerk signal of gyroscope acceleration in the direction of X-axis
+- **tBodyGyroJerkmean\_\_\_Z**:  Mean value of a jerk signal of gyroscope acceleration in the direction of Z-axis
+- **tBodyGyroJerkstd\_\_\_X**:  Standard deviation of a jerk signal of gyroscope acceleration in the direction of X-axis
+- **tBodyGyroJerkstd\_\_\_Y**:  Standard deviation of a jerk signal of gyroscope acceleration in the direction of X-axis
+- **tBodyGyroJerkstd\_\_\_Z**:  Standard deviation of a jerk signal of gyroscope acceleration in the direction of Z-axis
+- **tBodyAccMagmean\_\_**:  Magnitude of all three dimensions: Mean value of a time domain signal of body acceleration 
+- **tBodyAccMagstd\_\_**:  Magnitude of all three dimensions: Standard deviation of a time domain signal of body acceleration 
+- **tGravityAccMagmean\_\_**:  Magnitude of all three dimensions: Mean value of a time domain signal of gravity acceleration 
+- **tGravityAccMagstd\_\_**:  Magnitude of all three dimensions: Standard deviation of a time domain signal of gravity acceleration 
+- **tBodyAccJerkMagmean\_\_**:  Magnitude of all three dimensions: Mean value of a jerk signal of body acceleration 
+- **tBodyAccJerkMagstd\_\_**:  Magnitude of all three dimensions: tandard deviation of a jerk signal of body acceleration 
+- **tBodyGyroMagmean\_\_**:  Magnitude of all three dimensions: Mean value of a time domain signal of gyroscope acceleration 
+- **tBodyGyroMagstd\_\_**:  Magnitude of all three dimensions: Standard deviation of a time domain signal of gyroscope acceleration 
+- **tBodyGyroJerkMagmean\_\_**:  Magnitude of all three dimensions: Mean value of a jerk signal of gyroscope acceleration 
+- **tBodyGyroJerkMagstd\_\_**:  Magnitude of all three dimensions: Standard deviation of a jerk signal of gyroscope acceleration 
+- **fBodyAccmean\_\_\_X**:  Mean value of a time domain signal of body acceleration (**Fast Fourier Transformed**) in the direction of X-axis
+- **fBodyAccmean\_\_\_Y**:  Mean value of a time domain signal of body acceleration  (**Fast Fourier Transformed**)  in the direction of X-axis
+- **fBodyAccmean\_\_\_Z**:  Mean value of a time domain signal of body acceleration  (**Fast Fourier Transformed**)  in the direction of Z-axis
+- **fBodyAccstd\_\_\_X**:  Standard deviation of a time domain signal of body acceleration  (**Fast Fourier Transformed**)  in the direction of X-axis
+- **fBodyAccstd\_\_\_Y**:  Standard deviation of a time domain signal of body acceleration  (**Fast Fourier Transformed**)  in the direction of X-axis
+- **fBodyAccstd\_\_\_Z**:  Standard deviation of a time domain signal of body acceleration  (**Fast Fourier Transformed**)  in the direction of Z-axis
+- **fBodyAccJerkmean\_\_\_X**:  Mean value of a jerk signal of body acceleration  (**Fast Fourier Transformed**)  in the direction of X-axis
+- **fBodyAccJerkmean\_\_\_Y**:  Mean value of a jerk signal of body acceleration  (**Fast Fourier Transformed**)  in the direction of X-axis
+- **fBodyAccJerkmean\_\_\_Z**:  Mean value of a jerk signal of body acceleration  (**Fast Fourier Transformed**)  in the direction of Z-axis
+- **fBodyAccJerkstd\_\_\_X**:  Standard deviation of a jerk signal of body acceleration  (**Fast Fourier Transformed**)  in the direction of X-axis
+- **fBodyAccJerkstd\_\_\_Y**:  Standard deviation of a jerk signal of body acceleration  (**Fast Fourier Transformed**)  in the direction of X-axis
+- **fBodyAccJerkstd\_\_\_Z**:  Standard deviation of a jerk signal of body acceleration  (**Fast Fourier Transformed**)  in the direction of Z-axis
+- **fBodyGyromean\_\_\_X**:  Mean value of a time domain signal of gyroscope acceleration  (**Fast Fourier Transformed**)  in the direction of X-axis
+- **fBodyGyromean\_\_\_Y**:  Mean value of a time domain signal of gyroscope acceleration  (**Fast Fourier Transformed**)  in the direction of X-axis
+- **fBodyGyromean\_\_\_Z**:  Mean value of a time domain signal of gyroscope acceleration  (**Fast Fourier Transformed**)  in the direction of Z-axis
+- **fBodyGyrostd\_\_\_X**:  Standard deviation of a time domain signal of gyroscope acceleration  (**Fast Fourier Transformed**)  in the direction of X-axis
+- **fBodyGyrostd\_\_\_Y**:  Standard deviation of a time domain signal of gyroscope acceleration  (**Fast Fourier Transformed**)  in the direction of X-axis
+- **fBodyGyrostd\_\_\_Z**:  Standard deviation of a time domain signal of gyroscope acceleration  (**Fast Fourier Transformed**)  in the direction of Z-axis
+- **fBodyAccMagmean\_\_**:  Magnitude of all three dimensions: Mean value of a time domain signal of body acceleration  (**Fast Fourier Transformed**)  
+- **fBodyAccMagstd\_\_**:  Magnitude of all three dimensions: Standard deviation of a time domain signal of body acceleration  (**Fast Fourier Transformed**)  
+- **fBodyBodyAccJerkMagmean\_\_**:  Magnitude of all three dimensions: Mean value of a jerk signal of body acceleration  (**Fast Fourier Transformed**)  
+- **fBodyBodyAccJerkMagstd\_\_**:  Magnitude of all three dimensions: tandard deviation of a jerk signal of body acceleration  (**Fast Fourier Transformed**)  
+- **fBodyBodyGyroMagmean\_\_**:  Magnitude of all three dimensions: Mean value of a time domain signal of gyroscope acceleration  (**Fast Fourier Transformed**)  
+- **fBodyBodyGyroMagstd\_\_**:  Magnitude of all three dimensions: Standard deviation of a time domain signal of gyroscope acceleration  (**Fast Fourier Transformed**)  
+- **fBodyBodyGyroJerkMagmean\_\_**:  Magnitude of all three dimensions: Mean value of a jerk signal of gyroscope acceleration  (**Fast Fourier Transformed**)  
+- **fBodyBodyGyroJerkMagstd\_\_**:  Magnitude of all three dimensions: Standard deviation of a jerk signal of gyroscope acceleration  (**Fast Fourier Transformed**)  
+- **activity\_label**:  Label of activities (1  WALKING, 2 WALKING_UPSTAIRS, 3 WALKING_DOWNSTAIRS, 4 SITTING, 5 STANDING, and 6 LAYING)
+
+### 5-2 Variables of Data Set2 har_summary.txt
+Same as the variables of Data Set 1, with "_mean" appended at the end of variable names.

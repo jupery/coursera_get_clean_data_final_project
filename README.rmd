@@ -1,0 +1,84 @@
+---
+title: "Johns Hopkins University Coursera: Data Science Specialization  
+Getting and Cleaning Data Final Project Tidied Data Sets of Human Activity Recognition"
+author: "jupery"
+date: "15/06/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Johns Hopkins University Coursera: Data Science Specialization
+### Getting and Cleaning Data Final Project
+### Tidied Data Sets of Human Activity Recognition
+
+*Takashi Yonenaga 15/06/2020*
+
+
+## 1. Summary
+
+This Coursera final project is derivative of the project conducted by the Non Linear Complex Systems Laboratory at Università degli Studi di Genova, 
+which conducted experiments to capture 3D motions of participants through a smartphone attached to their bodies.
+This Coursera project prepares summarised version of the data obtained in the experiments.
+
+The original data set, along with their full descriptions, can be found at the Human Activity Recognition Using Smartphones Dataset (Version 1.0).
+http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
+
+
+## 2. About Original Experiments and Data Set
+The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The experiments have been video-recorded to label the data manually. The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data. 
+
+The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain. See 'features_info.txt' for more details. 
+
+**For each record it is provided:**  
+- Triaxial acceleration from the accelerometer (total acceleration) and the estimated body acceleration.  
+- Triaxial Angular velocity from the gyroscope.  
+- A 561-feature vector with time and frequency domain variables.  
+- Its activity label.   
+- An identifier of the subject who carried out the experiment.  
+
+**The dataset includes the following files:**  
+- 'README.txt'  
+- 'features_info.txt': Shows information about the variables used on the feature vector.  
+- 'features.txt': List of all features.  
+- 'activity_labels.txt': Links the class labels with their activity name.  
+- 'train/X_train.txt': Training set.  
+- 'train/y_train.txt': Training labels.  
+- 'test/X_test.txt': Test set.  
+- 'test/y_test.txt': Test labels.  
+- 'train/subject_train.txt': Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30.  
+
+
+**Notes:**  
+* Features are normalized and bounded within [-1,1].  
+* Each feature vector is a row on the text file.  
+* The data of inertial signals were not used in this project, although the data are saved in the project folder.
+
+
+## 3. Project Specification: Cleaning the Original Data
+
+Using R, the project creates two tidy data sets from the original data:  
+- Data 1 "har_merged.txt": a data set that contains means and standard deviations of measures collected. It includes all subjects and activities.  
+- Data 2 "har_summarised.txt": summarised version of Data 1 by subject and activity.  
+
+Here are the steps taken to prepare the two data sets.  
+**Data 1 har_merged.txt**  
+1. Prepare descriptive variable names using 'features.txt' in the orignal data set.
+2. Load the original test and train data sets. For each, attach the subject data (1 to 30) and activity (e.g. "walking", "laying", etc.) data to the measure data set.  
+3. Combine the test data set (data of 9 participants) and the training data set (data of 21 participants) into a single data set.  
+4. Extract only the data of means and standard deviations out of all the statistical measures (e.g. mean, max, min, etc.) of participants' motions.  
+
+**Data 2 har_summary.txt**  
+5. Summarise means and standard deviations by subject and activity.
+
+
+## 4. License:  
+Use of this dataset in publications must be acknowledged by referencing the following publication [1] 
+
+[1] Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012
+
+This dataset is distributed AS-IS and no responsibility implied or explicit can be addressed to the authors or their institutions for its use or misuse. Any commercial use is prohibited.
+
+Jorge L. Reyes-Ortiz, Alessandro Ghio, Luca Oneto, Davide Anguita. November 2012.
